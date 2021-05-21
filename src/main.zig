@@ -7,18 +7,10 @@ const c = @cImport({
 });
 
 pub fn main() !void {
-    
     window.init("ZViN", 1280, 720);
 
     var running: bool = true;
     var event: c.SDL_Event = undefined;
-
-    var sprt: sprite.Sprite = sprite.Sprite.init("bg.jpg");
-    sprt.rect.w = 1280;
-    sprt.rect.h = 720;
-
-    var clip: audio.AudioClip = audio.AudioClip.init("music.mp3", true);
-    clip.play();
 
     while(running) {
         window.clear();
@@ -28,10 +20,9 @@ pub fn main() !void {
             c.SDL_QUIT => {running = false;},
             else => {}
         }
-        sprt.render();
+        
         window.refresh();
     }
 
-    sprt.deinit();
     window.deinit();
 }
